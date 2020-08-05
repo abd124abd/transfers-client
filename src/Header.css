@@ -1,0 +1,11 @@
+header {
+  height: 30px;
+  padding: 5px;
+  border-bottom: .5px solid #eee;
+  background: black;
+  color: white;
+}
+
+span {
+  padding: 0 5px;
+}

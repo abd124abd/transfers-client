@@ -1,0 +1,14 @@
+.dashboard p {
+  display: inline-block;
+  width: 50%;
+  border-width: .5px .5px 0 .5px;
+  border-style: solid;
+  text-align: center;
+  background: black;
+  color: white;
+}
+
+.selected {
+  background: white !important;
+  color: black !important;
+}
