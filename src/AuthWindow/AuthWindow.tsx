@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Form from './Form';
-import authFormProperties from './constants/auth-form-properties';
+import Form from '../Form/Form';
+import authFormProperties from '../constants/auth-form-properties';
 
 interface Props {
   submitHandler: {(value: any): void}

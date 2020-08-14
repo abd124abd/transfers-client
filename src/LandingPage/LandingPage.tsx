@@ -1,6 +1,6 @@
 import React from 'react';
-import TotalTransactionData from './TotalTransactionData';
-import AuthWindow from './AuthWindow';
+import TotalTransactionData from '../TotalTransactionData/TotalTransactionData';
+import AuthWindow from '../AuthWindow/AuthWindow';
 import './LandingPage.css';
 
 /*

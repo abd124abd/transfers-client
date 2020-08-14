@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
-import Dashboard from './Dashboard';
-import LandingPage from './LandingPage';
-import Header from './Header';
+import Dashboard from '../Dashboard/Dashboard';
+import LandingPage from '../LandingPage/LandingPage';
+import Header from '../Header/Header';
 
 /*
 

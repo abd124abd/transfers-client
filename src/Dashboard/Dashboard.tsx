@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import MyTransactionWindow from './MyTransactionWindow';
-import NewTransactionWindow from './NewTransactionWindow';
+import MyTransactionWindow from '../MyTransactionWindow/MyTransactionWindow';
+import NewTransactionWindow from '../NewTransactionWindow/NewTransactionWindow';
 import './Dashboard.css';
 
 /*
