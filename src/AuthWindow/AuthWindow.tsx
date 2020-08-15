@@ -3,7 +3,7 @@ import Form from '../Form/Form';
 import authFormProperties from '../constants/auth-form-properties';
 
 interface Props {
-  submitHandler: {(value: any, userData: any): void}
+  submitHandler: {(formType: string, userData: any): undefined};
 }
 
 const AuthWindow = ({submitHandler}: Props) => {
@@ -12,7 +12,11 @@ const AuthWindow = ({submitHandler}: Props) => {
 
   return (
     <div className="auth-window">
-      <Form formProperties={authFormProperties[authFormType](submitHandler)} />
+      <Form
+        formProperties={authFormProperties[authFormType]()}
+        formType={authFormType}
+        submitHandler={submitHandler}
+      />
       <section className='modify-auth-form-type'>
         <button onClick={() => updateAuthFormType('login')}>login</button>
         <button onClick={() => updateAuthFormType('register')}>register</button>

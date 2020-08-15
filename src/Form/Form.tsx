@@ -1,14 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, FormEvent} from 'react';
 import {v4 as uuidv4} from 'uuid';
 import Input from '../Input/Input';
 
 interface Props {
   formProperties: any;
+  formType: string;
+  submitHandler: {(formType: string, userData: any): undefined};
 }
 
 // modify so takes generic form props and returns related inputs
-const Form = ({formProperties}: Props) => {
-    const {legend, onSubmit, inputs} = formProperties;
+const Form = ({formProperties, formType, submitHandler}: Props) => {
+    const {legend, inputs} = formProperties;
 
     const inputData = inputs.reduce((acc: any, input: any) => {
       const { id, name, value } = input;
@@ -35,8 +37,20 @@ const Form = ({formProperties}: Props) => {
         );
     });
 
+    const getDataToSubmit = () => {
+      return Object.values(data).reduce((acc: any, input: any) => {
+        acc[input.name] = input.value;
+        return acc;
+      }, {});
+    };
+
+    const onSubmitHandler = (e: any) => {
+      e.preventDefault();
+      submitHandler(formType, getDataToSubmit())
+    };
+
     return (
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmitHandler}>
         <legend>{legend}</legend>
         {inputsJSX}
         <input type='submit' value='submit' />

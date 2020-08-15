@@ -9,7 +9,13 @@ const Input = (props: any) => {
   return (
     <label htmlFor={props.name}>
       {props.name}
-      <input {...props} onChange={e => props.onChange(e)} />
+      <input
+        {...props}
+        minLength={props.minLength}
+        maxLength={props.maxLength}
+        onChange={e => props.onChange(e)}
+        required={true}
+      />
     </label>
   );
 };

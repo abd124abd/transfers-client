@@ -21,10 +21,11 @@ const App = () => {
   // state for form - can use reducer and dispatch
   // here since passing down multiple levels
 
-  const handleUserSubmit = (authFormType: string, userData: any) => {
+  const handleUserSubmit: {(formType: string, userData: any): undefined} = (formType, userData) => {
+    console.log('called')
     // authFormType === login or register
     // submit auth API calls then update user
-    const endpoint = authFormType === 'login'
+    const endpoint = formType === 'login'
       ? 'auth/login'
       : 'users';
 
@@ -43,6 +44,8 @@ const App = () => {
       console.error(err)
     })
     updateUser('');
+
+    return undefined;
   };
 
   const logoutUser = () => {
