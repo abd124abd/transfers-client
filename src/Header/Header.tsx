@@ -11,7 +11,7 @@ const Header = ({handleUpdateAuthFormVisible, user, logoutUser}: Props) => {
 
   const authNavJSX = user === false
     ? <><span onClick={() => handleUpdateAuthFormVisible(true)}>login</span>
-      <span onClick={() => handleUpdateAuthFormVisible(true)}>get started</span></>
+      <span onClick={() => handleUpdateAuthFormVisible(true)}>register</span></>
     : <span onClick={() => logoutUser()}>logout</span>;
 
   return (

@@ -1,4 +1,4 @@
-const loginFormProperties = (submitHandler: {(value: any): void}) => {
+const loginFormProperties = (submitHandler: {(value: any, userData: any): void}) => {
   return {
     legend: 'Login',
     onSubmit: submitHandler,
@@ -25,7 +25,7 @@ const loginFormProperties = (submitHandler: {(value: any): void}) => {
   }
 };
 
-const registrationFormProperties = (submitHandler: {(value: any): void}) => {
+const registrationFormProperties = (submitHandler: {(value: any, userData: any): void}) => {
   return {
     legend: 'Register',
     onSubmit: submitHandler,
@@ -53,7 +53,7 @@ const registrationFormProperties = (submitHandler: {(value: any): void}) => {
 };
 
 type authFormPropertiesOptions = {
-  [key: string]: (submitHandler: {(value: any): void}) => any;
+  [key: string]: (submitHandler: {(value: any, userData: any): void}) => any;
 }
 
 const authFormProperties: authFormPropertiesOptions = {

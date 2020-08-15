@@ -3,7 +3,7 @@ import Form from '../Form/Form';
 import authFormProperties from '../constants/auth-form-properties';
 
 interface Props {
-  submitHandler: {(value: any): void}
+  submitHandler: {(value: any, userData: any): void}
 }
 
 const AuthWindow = ({submitHandler}: Props) => {

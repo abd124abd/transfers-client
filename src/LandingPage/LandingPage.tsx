@@ -11,7 +11,7 @@ import './LandingPage.css';
 */
 
 interface Props {
-  handleUserSubmit: {(value: any): void};
+  handleUserSubmit: {(value: any, userData: any): void};
   authFormVisible: boolean;
 }
 

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {v4 as uuidv4} from 'uuid';
+import Input from '../Input/Input';
 
 interface Props {
   formProperties: any;
@@ -9,13 +10,28 @@ interface Props {
 const Form = ({formProperties}: Props) => {
     const {legend, onSubmit, inputs} = formProperties;
 
+    const inputData = inputs.reduce((acc: any, input: any) => {
+      const { id, name, value } = input;
+      acc[id] = input;
+      return acc;
+    }, {});
+
+    const [data, setInputData] = useState(inputData);
+
+    const handleChangeInput = (id: number) => (e: any) => {
+      const dataCopy = {...data};
+      dataCopy[id]['value'] = e.target['value'];
+      setInputData(dataCopy);
+    };
+
     // state for the inputs
-    const inputsJSX = inputs.map((input: any) => {
+    const inputsJSX = Object.values(data).map((input: any) => {
         return (
-          <label key={uuidv4()} htmlFor={input.name}>
-            {input.name}
-            <input {...input}/>
-          </label>
+          <Input
+            key={input.id}
+            {...input}
+            onChange={handleChangeInput(input.id)}
+          />
         );
     });
 
@@ -25,7 +41,7 @@ const Form = ({formProperties}: Props) => {
         {inputsJSX}
         <input type='submit' value='submit' />
       </form>
-    )
-}
+    );
+};
 
 export default Form;

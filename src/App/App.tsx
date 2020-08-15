@@ -16,14 +16,32 @@ import Header from '../Header/Header';
 
 const App = () => {
 
-  const [user, updateUser] = useState<boolean | string>('user123');
-  const [authFormVisible, updateAuthFormVisible] = useState(false);
+  const [user, updateUser] = useState<boolean | string>(false);
+  const [authFormVisible, updateAuthFormVisible] = useState(true);
   // state for form - can use reducer and dispatch
   // here since passing down multiple levels
 
-  const handleUserSubmit = (authFormType: string) => {
+  const handleUserSubmit = (authFormType: string, userData: any) => {
     // authFormType === login or register
     // submit auth API calls then update user
+    const endpoint = authFormType === 'login'
+      ? 'auth/login'
+      : 'users';
+
+    fetch(`http://localhost:8080/${endpoint}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userData),
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+    })
+    .catch(err => {
+      console.error(err)
+    })
     updateUser('');
   };
 
