@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Dashboard from '../Dashboard/Dashboard';
 import LandingPage from '../LandingPage/LandingPage';
 import Header from '../Header/Header';
+import AuthController from '../controllers/auth';
 
 /*
 
@@ -14,17 +15,21 @@ import Header from '../Header/Header';
 
 */
 
+const authController = new AuthController();
+
 const App = () => {
 
-  const [user, updateUser] = useState<boolean | string>(false);
+  const [user, updateUser] = useState<any>(false);
   const [authFormVisible, updateAuthFormVisible] = useState(true);
-  // state for form - can use reducer and dispatch
-  // here since passing down multiple levels
+
+  if (authController.currentToken() && !user) {
+    const payload = authController.extractUserFromToken(authController.currentToken());
+    console.log(payload);
+    updateUser(payload);
+    updateAuthFormVisible(false);
+  };
 
   const handleUserSubmit: {(formType: string, userData: any): undefined} = (formType, userData) => {
-    console.log('called')
-    // authFormType === login or register
-    // submit auth API calls then update user
     const endpoint = formType === 'login'
       ? 'auth/login'
       : 'users';
@@ -39,16 +44,18 @@ const App = () => {
     .then(res => res.json())
     .then(data => {
       console.log(data)
+      authController.setAuthToken(data.authToken);
+      updateUser(data.user);
     })
     .catch(err => {
       console.error(err)
     })
-    updateUser('');
 
     return undefined;
   };
 
   const logoutUser = () => {
+    authController.clearAuthToken();
     updateUser(false);
     // redirect to homepage
   };
