@@ -20,7 +20,7 @@ const authController = new AuthController();
 const App = () => {
 
   const [user, updateUser] = useState<any>(false);
-  const [authFormVisible, updateAuthFormVisible] = useState(true);
+  const [authFormVisible, updateAuthFormVisible] = useState(false);
 
   if (authController.currentToken() && !user) {
     const payload = authController.extractUserFromToken(authController.currentToken());
@@ -41,7 +41,6 @@ const App = () => {
     })
     .then(res => res.json())
     .then(data => {
-      console.log(data)
       authController.setAuthToken(data.authToken);
       updateUser(data.user);
     })
