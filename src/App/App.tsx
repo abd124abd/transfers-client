@@ -62,7 +62,9 @@ const App = () => {
         handleUserSubmit={handleUserSubmit}
         authFormVisible={authFormVisible}
       />
-    : <Dashboard />
+    : <Dashboard
+        user={user}
+      />
 
   return (
     <div className='container'>

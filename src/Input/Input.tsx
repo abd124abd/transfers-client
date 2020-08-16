@@ -5,14 +5,30 @@ interface Props {
   props: any;
 }
 
+interface ValidationProperties {
+  minLength?: number;
+  maxLength?: number;
+  min?: number;
+  max?: number;
+}
+
 const Input = (props: any) => {
+  const validationProperties: ValidationProperties = {};
+
+  if (props.hasOwnProperty('minLength')) {
+    validationProperties.minLength = props.minLength;
+  };
+
+  if (props.hasOwnProperty('maxLength')) {
+    validationProperties.maxLength = props.maxLength;
+  };
+
   return (
     <label htmlFor={props.name}>
       {props.name}
       <input
         {...props}
-        minLength={props.minLength}
-        maxLength={props.maxLength}
+        {...validationProperties}
         onChange={e => props.onChange(e)}
         required={true}
       />

@@ -14,12 +14,16 @@ message of updates (sent money, added as payee)
 
 */
 
-const Dashboard = () => {
+interface Props {
+  user: any;
+}
+
+const Dashboard = ({user}: Props) => {
 
   const [dashboardSelected, updateDashboardSelected] = useState('new');
 
   const dashboardJSX = dashboardSelected === 'new'
-    ? <NewTransactionWindow />
+    ? <NewTransactionWindow user={user} />
     : <MyTransactionWindow />;
 
   return (

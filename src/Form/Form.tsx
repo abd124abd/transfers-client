@@ -5,7 +5,7 @@ import Input from '../Input/Input';
 interface Props {
   formProperties: any;
   formType: string;
-  submitHandler: {(formType: string, userData: any): undefined};
+  submitHandler: {(formType: string, data: any): undefined};
 }
 
 // modify so takes generic form props and returns related inputs
