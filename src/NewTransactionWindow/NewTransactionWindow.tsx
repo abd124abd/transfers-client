@@ -22,7 +22,7 @@ const NewTransactionWindow = ({user}: Props) => {
     .then(res => res.json())
     .then(data => {
       console.log(data);
-      // sucessful transfer render and reset form
+      // sucessful transfer message render
     })
     .catch(err => {
       console.error(err)

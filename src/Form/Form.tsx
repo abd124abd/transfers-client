@@ -14,7 +14,7 @@ const Form = ({formProperties, formType, submitHandler}: Props) => {
 
     const inputData = inputs.reduce((acc: any, input: any) => {
       const { id, name, value } = input;
-      acc[id] = input;
+      acc[id] = Object.assign({}, input);
       return acc;
     }, {});
 
@@ -46,7 +46,10 @@ const Form = ({formProperties, formType, submitHandler}: Props) => {
 
     const onSubmitHandler = (e: any) => {
       e.preventDefault();
-      submitHandler(formType, getDataToSubmit())
+      const submitData = getDataToSubmit();
+      console.log(inputData)
+      setInputData(inputData);
+      submitHandler(formType, submitData);
     };
 
     return (
