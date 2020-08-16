@@ -11,18 +11,18 @@ const NewTransactionWindow = ({user}: Props) => {
   const authController = new AuthController();
 
   const handleNewTransactionSubmit: {(formType: string, transactionData: any): undefined} = (formType, transactionData) => {
-
-    fetch(`http://localhost:8080/transfers/${user.id}`, {
+    fetch(`http://localhost:8080/transfers/user/${user.id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer  ${authController.getAuthToken()}`
+        'Authorization': `Bearer ${authController.getAuthToken()}`
       },
       body: JSON.stringify(transactionData),
     })
     .then(res => res.json())
     .then(data => {
       console.log(data);
+      // sucessful transfer render and reset form
     })
     .catch(err => {
       console.error(err)
