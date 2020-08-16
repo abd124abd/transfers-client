@@ -24,9 +24,7 @@ const App = () => {
 
   if (authController.currentToken() && !user) {
     const payload = authController.extractUserFromToken(authController.currentToken());
-    console.log(payload);
-    updateUser(payload);
-    updateAuthFormVisible(false);
+    updateUser({id: payload.user_id, username: payload.sub});
   };
 
   const handleUserSubmit: {(formType: string, userData: any): undefined} = (formType, userData) => {

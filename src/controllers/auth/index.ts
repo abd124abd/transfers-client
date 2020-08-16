@@ -13,7 +13,7 @@ class AuthController {
   };
 
   public clearAuthToken() {
-    window.localStorage.clearItem('authToken');
+    window.localStorage.removeItem('authToken');
   };
 
   public currentToken() {
@@ -23,7 +23,7 @@ class AuthController {
       : token;
   };
 
-  public extractUserFromToken(token: any) {
+  public extractUserFromToken: {(token: any): any} = token => {
     return verify(token, JWT_SECRET, {
       algorithms: ['HS256'],
     });
